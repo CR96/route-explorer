@@ -11,7 +11,6 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import _ from 'lodash';
 
 import RealtimeCard from './RealtimeCard';
-import Helpers from '../helpers.js';
 
 /** Collapsable list of realtime arrivals for Stop */
 class RoutePredictionList extends React.Component {
@@ -43,7 +42,7 @@ class RoutePredictionList extends React.Component {
     return (
       <Card style={{ margin:'0px 0px 10px 0px' }}>
         <List style={{ paddingTop: 0 }}>
-          {predictions.length > 0 ? Helpers.cleanPredictionHeadsign(predictions).map((p, i) => (
+          {predictions.length > 0 ? predictions.map((p, i) => (
             <div key={i}>
               <ListItem button key={p.tripId} onClick={this.handleClick(p.tripId)} style={{ background: '#fff' }} >
                 <ListItemIcon>

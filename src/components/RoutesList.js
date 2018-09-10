@@ -20,8 +20,8 @@ class RoutesList extends Component {
 
     return (
       <div style={gridStyle}>
-        {this.props.lines.map(line =>
-          <RouteLink key={line.id} id={line.id} routeId={line.rt_id} icons />
+        {this.props.lines.sort((a, b) => { return a.number - b.number }).map(line =>
+          <RouteLink key={line.rt_id} id={line.number} routeId={line.rt_id} icons />
         )}
       </div>
     );

@@ -16,7 +16,6 @@ import Helpers from '../helpers.js';
 import {defaultMapStyle, routeLineIndex, routeCaseIndex, timepointLabelIndex} from '../style.js';
 import {stopPointIndex} from '../style';
 import RouteBadge from './RouteBadge';
-import Schedules from '../data/schedules.js';
 
 const styles = {
   ahead: {
@@ -39,22 +38,12 @@ class RouteMap extends Component {
     super(props);
 
     let tripIds = {};
-    let scheduleRoute = Schedules[this.props.route.number]
-    let schedule = scheduleRoute.schedules
-    console.log(schedule)
-    Object.keys(schedule).forEach(svc => {
-      Object.keys(schedule.weekday).forEach(dir => {
-        if (!tripIds[dir]) {
-          tripIds[dir] = [];
-        }
-        tripIds[dir] = tripIds[dir].concat(schedule[svc][dir].trips.map(trip => trip.trip_id));
-      });
-    });
+    this.route = Helpers.getRouteDetails(this.props.route.number)
 
     // make timepoint GeoJSON
-    const firstDir = Object.keys(schedule.weekday)[0]
-    const firstDirTimepoints = scheduleRoute.timepoints[firstDir]
-    console.log(firstDirTimepoints)
+
+    const firstDir = this.route.directions[0]
+    const firstDirTimepoints = this.route.timepoints[firstDir]
     const timepointFeatures = firstDirTimepoints.map(t => {      
       return {
         "type": "Feature",
@@ -72,7 +61,7 @@ class RouteMap extends Component {
       }
     })
 
-    const stopFeatures = _.filter(Stops, s => { return s.routes.map(r => r[0]).indexOf(scheduleRoute.id) > -1 }).map(t => {
+    const stopFeatures = _.filter(Stops, s => { return s.routes.map(r => r[0]).indexOf(this.route.number.toString()) > -1 }).map(t => {
       return {
         "type": "Feature",
         "geometry": {
@@ -88,15 +77,12 @@ class RouteMap extends Component {
     });
 
     const viewport = new WebMercatorViewport({width: window.innerWidth > 768 ? window.innerWidth * (4/8) - 7.5 : window.innerWidth, height: window.innerWidth > 768 ? ((window.innerHeight - 128) * 1 - 114) : 250});
-    const bound = viewport.fitBounds(scheduleRoute.bbox,
-      { padding: window.innerWidth > 768 ? 50 : window.innerWidth / 20 }
-    );
 
     this.state = {
       viewport: {
-        latitude: bound.latitude,
-        longitude: bound.longitude,
-        zoom: bound.zoom,
+        latitude: 42.3,
+        longitude: -83.1,
+        zoom: 11,
         bearing: 0,
         width: window.innerWidth > 768 ? window.innerWidth * (4/8) - 7.5 : window.innerWidth,
         height: window.innerWidth > 768 ? ((window.innerHeight - 128) * 1 - 114) : 300
@@ -113,7 +99,7 @@ class RouteMap extends Component {
         minPitch: 0,
         maxPitch: 0,
       },
-      directions: Object.keys(scheduleRoute.timepoints),
+      directions: this.route.directions,
       realtimeTrips: [],
       showRealtime: true,
       fetched: false,
@@ -122,7 +108,6 @@ class RouteMap extends Component {
       stopFeatures: stopFeatures,
       showTimepoints: false,
       clickedStop: null,
-      scheduleRoute: scheduleRoute
     };
 
     this._resize = this._resize.bind(this);
@@ -130,11 +115,13 @@ class RouteMap extends Component {
   }
 
   fetchData() {
-    fetch(`${Helpers.endpoint}/trips-for-route/DDOT_${this.props.route.rt_id}.json?key=BETA&includeStatus=true&includePolylines=false`)
+    fetch(`${Helpers.endpoint}/trips-for-route/DDOT_${this.props.route.rt_id}.json?key=BETA&includeStatus=true&includeSchedules=true&includePolylines=false`)
     .then(response => response.json())
     .then(d => {
+      console.log(d)
       let geojson = _.sortBy(d.data.list, 'status.tripId').map((bus, i) => {
-        let direction = _.findKey(this.state.tripIds, t => { return t.indexOf(bus.status.activeTripId.slice(-4)) > -1});
+        let tripDetail = d.data.references.trips.filter(a => a.id === bus.status.activeTripId)[0]
+        let direction = this.route.directions[parseInt(tripDetail.directionId)]
         return {
           "type": "Feature",
           "geometry": {
@@ -151,11 +138,12 @@ class RouteMap extends Component {
             "scheduleDeviation": bus.status.scheduleDeviation,
             "updateTime": moment(bus.status.lastUpdateTime).format("h:mm:ss a"),
             "onTime": bus.status.scheduleDeviation / 60,
-            "lastStop": this.state.scheduleRoute.timepoints[direction] ? this.state.scheduleRoute.timepoints[direction].slice(-1)[0] : ``,
+            "lastStop": this.route.timepoints[direction] ? this.route.timepoints[direction].slice(-1)[0] : ``,
             "direction": direction
           }
         }
       });
+      console.log(geojson)
       let realtimeTrips = _.filter(geojson, o => { return o.properties.direction !== undefined });
       this.setState({ 
         realtimeTrips: realtimeTrips,
@@ -190,14 +178,12 @@ class RouteMap extends Component {
   }
 
   _onClick = (event) => {
-    console.log(event)
     if(this.state.viewport.zoom > 12) {
       this.setState({ clickedStop: event.features[0] })
     }
   }
   
   _onBusClick = (x) => {
-    console.log(x)
     // this.setState({ clickedStop: event.features[0] })
   }
   
@@ -269,7 +255,7 @@ class RouteMap extends Component {
                       <CardHeader 
                         avatar={rt.properties.predicted ? <LiveIcon /> : <ScheduleIcon />}
                         title={_.capitalize(rt.properties.direction)} 
-                        subheader={`to ${Stops[this.state.scheduleRoute.timepoints[rt.properties.direction].slice(-1)].name}`} 
+                        subheader={`to ${Stops[this.route.timepoints[rt.properties.direction].slice(-1)].name}`} 
                         style={{ fontSize: '.75em' }} />
                       <CardContent>
                         <span style={{ display: 'block' }}>Next stop: {Stops[rt.properties.nextStop.slice(5,)].name}</span>

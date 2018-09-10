@@ -6,6 +6,11 @@ const routeDetails = [{
         radius: 0,
         rt_id: 6802,
         downtown: true,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [8911, 32, 34, 35, 36, 38, 42, 41],
+            westbound: [41, 8963, 44, 46, 47, 49, 51, 8911]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Mack and Moross', 'Rosa Parks TC'],
         via: [''],
@@ -41,7 +46,12 @@ const routeDetails = [{
         color: "#9b5ba5",
         radius: 0,
         rt_id: 6803,
+        timepoints: {
+            northbound: [10178, 74, 75, 76, 77],
+            southbound: [77, 79, 80, 83, 10178]
+        },
         downtown: false,
+        directions: ["northbound", "southbound"],
         days_per_week: ['Monday', 'Sunday'],
         between: ['Jefferson & Maryland', '7 Mile & Gratiot'],
         via: ['Chalmers', "Schoenherr"],
@@ -77,9 +87,14 @@ const routeDetails = [{
         color: "#44aa42",
         radius: 0,
         downtown: true,
+        timepoints: {
+            northbound: [8892, 87, 118, 89, 90, 91, 92],
+            southbound: [95, 96, 97, 98, 99, 100, 503, 8892]
+        },
         rt_id: 6804,
+        directions: ["northbound", "southbound"],
         days_per_week: ['Monday', 'Sunday'],
-        between: ['Rosa Parks TC', 'Varjo & Van Dyke'],
+        between: ['Varjo & Van Dyke', 'Rosa Parks TC'],
         via: ['Lafayette', 'Chene', 'Jos. Campau', 'Nevada'],
         description: "An east side route that offers 24/7 service and improved frequency as part of the ConnectTen network. Connects Detroit from Varjo & Van Dyke to Downtown Rosa Parks Transit Center. The main streets served are Nevada, Joseph Campau and Chene.",
         pdf: ["http://www.detroitmi.gov/Portals/0/docs/deptoftransportation/pdfs/2016/April%202016/10CheneMS.pdf?ver=2016-04-22-150329-977"],
@@ -113,9 +128,14 @@ const routeDetails = [{
         color: "#0079c2",
         radius: 0,
         rt_id: 6805,
+        timepoints: {
+            eastbound: [103, 2491, 107, 800, 111, 112, 115],
+            westbound: [115, 1236, 118, 8248, 122, 2492, 103]
+        },
         downtown: false,
         days_per_week: ['Monday', 'Sunday'],
-        between: ['Clark & Fort', 'Lycaste & Jefferson'],
+        directions: ["eastbound", "westbound"],
+        between: ['Lycaste & Jefferson', 'Clark & Fort'],
         via: ['Junction', 'Epworth', 'Joy', 'Harper', 'St. Jean'],
         description: "Connects various neighborhoods between Jefferson & Lycaste and Clark & Fort. The main streets served are St Jean, Shoemaker, Harper, Owen, Clairmount, Epworth and Junction.",
         pdf: ["http://www.detroitmi.gov/Portals/0/docs/deptoftransportation/pdfs/2016/January/11Clairmount.pdf"],
@@ -137,8 +157,13 @@ const routeDetails = [{
         radius: 0,
         rt_id: 6806,
         downtown: false,
+        timepoints: {
+            southbound: [127, 7864, 129, 130, 9034, 5525, 132, 10176, 10167],
+            northbound: [10167, 135, 136, 5524, 9035, 138, 139, 140, 127]
+        },
         days_per_week: ['Monday', 'Sunday'],
-        between: ['Fairgrounds TC', 'Belle Isle'],
+        directions: ["southbound", "northbound"],
+        between: ['Belle Isle', 'Fairgrounds TC'],
         via: ['Conant', 'E. Outer Dr'],
         description: "An east side route that connects Detroit from Belle Isle to Fairgrounds. The main streets served are Conant Street, Mt Elliot, E Grand Blvd and State Fair. In addition to Detroit, this route also serves Hamtramck.",
         pdf: ["http://www.detroitmi.gov/Portals/0/docs/deptoftransportation/pdfs/2016/April%202016/12ConantMS.pdf?ver=2016-04-22-150443-267"],
@@ -172,7 +197,12 @@ const routeDetails = [{
         radius: 0,
         rt_id: 6807,
         downtown: false,
+        timepoints: {
+            southbound: [93, 8552, 144, 145, 9033, 147, 148, 149, 150],
+            northbound: [153, 154, 1989, 10031, 157, 8591, 93]
+        },
         days_per_week: ['Monday', 'Sunday'],
+        directions: ["southbound", "northbound"],
         between: ['Conner & Jefferson', 'Bel-Air Center'],
         via: ['Conner'],
         pdf: ["http://www.detroitmi.gov/Portals/0/docs/deptoftransportation/pdfs/2016/January/13ConnerMS.pdf"],
@@ -207,9 +237,14 @@ const routeDetails = [{
         color: "#004445",
         radius: 99,
         downtown: false,
-        rt_id: 6808,        
+        rt_id: 6808, 
+        timepoints: {
+            eastbound: [10187, 7141, 161, 162, 163, 164, 165, 169, 171, 172, 41],
+            westbound: [41, 175, 48, 177, 181, 182, 183, 184, 185, 7140, 10192]
+        },       
+        directions: ["eastbound", "westbound"],
         days_per_week: ['Monday', 'Sunday'],
-        between: ['Warren & Telegraph', 'Warren & Moross'],
+        between: ['Warren & Moross', 'Warren & Telegraph'],
         via: ['Warren', 'Forest'],
         pdf: ["http://www.detroitmi.gov/Portals/0/docs/deptoftransportation/pdfs/2018/8WarrenMF.pdf", "http://www.detroitmi.gov/Portals/0/docs/deptoftransportation/pdfs/2018/8WarrenSS.pdf"],
         description: "A crosstown route that offers 24/7 service and improved frequency as part of the ConnectTen network. Connects Detroit from Mack & Moross to Warren & Telegraph. The main street served is Warren Ave. In addition to Detroit, this route also serves Dearborn.",
@@ -247,6 +282,11 @@ const routeDetails = [{
         radius: 0,
         downtown: false,
         rt_id: 6809,
+        timepoints: {
+            eastbound: [10414, 190, 191, 192, 193, 194, 195, 196, 197, 198],
+            westbound: [198, 200, 201, 202, 203, 204, 205, 206, 207, 10414]
+        },
+        directions: ["eastbound", "westbound"],
         days_per_week: ['Monday', 'Sunday'],
         between: ['Rouge Park', 'Woodward & Manchester'],
         via: [''],
@@ -283,6 +323,11 @@ const routeDetails = [{
         radius: 0,
         downtown: true,
         rt_id: 6810,
+        timepoints: {
+            southbound: [10340, 10325, 212, 213, 214, 215, 216, 218, 220, 221, 8913, 223],
+            northbound: [223, 8913, 224, 225, 227, 229, 230, 231, 6056, 233, 10326, 10340]
+        },
+        directions: ["southbound", "northbound"],
         days_per_week: ['Monday', 'Sunday'],
         between: ['Rosa Parks TC', 'Providence Hospital'],
         via: ['Cass', 'West Grand Bl.', 'Dexter', 'Greenfield', 'Livernois', 'Curtis'],
@@ -322,7 +367,12 @@ const routeDetails = [{
         radius: 0,
         downtown: false,
         rt_id: 6811,
+        timepoints: {
+            eastbound: [236, 238, 10325, 240, 242, 243, 144, 62, 245, 40],
+            westbound: [41, 245, 63, 247, 248, 249, 251, 10326, 253, 236]
+        },
         days_per_week: ['Monday', 'Sunday'],
+        directions: ["eastbound", "westbound"],
         between: ['Mack & Moross', '7 Mile & Grand River'],
         via: ['8 Mile Road'],
         pdf: ["http://www.detroitmi.gov/Portals/0/docs/Bus%20Schedules/April%202018/17EightMileMF.pdf", "http://www.detroitmi.gov/Portals/0/docs/Bus%20Schedules/April%202018/17EightMileSS.pdf"],
@@ -360,6 +410,11 @@ const routeDetails = [{
         color: "#44aa42",
         radius: 0,
         downtown: true,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [256, 258, 260, 262, 263, 265, 266, 267, 8928],
+            westbound: [8928, 272, 273, 274, 3377, 276, 277, 279, 286, 288]
+        },
         rt_id: 6812,
         days_per_week: ['Monday', 'Sunday'],
         between: ['Rosa Parks TC', 'Telegraph & Fenkell'],
@@ -400,6 +455,11 @@ const routeDetails = [{
         radius: 0,
         downtown: true,
         rt_id: 6813,
+        directions: ["westbound", "eastbound"],
+        timepoints: {
+            westbound: [8891, 290, 291, 2558, 294, 295],
+            eastbound: [298, 299, 2561, 302, 303, 8891]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Rosa Parks TC', 'West Outer Drive'],
         via: ['Fort St.'],
@@ -438,6 +498,11 @@ const routeDetails = [{
         radius: 99,
         downtown: true,
         rt_id: 6814,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [324, 325, 328, 330, 331, 332, 334, 335, 337, 394],
+            westbound: [972, 1102, 346, 347, 2726, 352, 354, 324]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Rosa Parks TC', 'West 7 Mile'],
         via: ['Grand River'],
@@ -476,7 +541,12 @@ const routeDetails = [{
         color: "#004445",
         radius: 99,
         downtown: false,
+        timepoints: {
+            southbound: [210, 10325, 358, 359, 361, 363, 600, 368],
+            northbound: [368, 372, 374, 376, 378, 379, 10326, 210]
+        },
         rt_id: 6815,
+        directions: ["southbound", "northbound"],
         days_per_week: ['Monday', 'Sunday'],
         between: ['Northland Mall', 'Fairlane Mall'],
         via: ["Greenfield"],
@@ -515,6 +585,11 @@ const routeDetails = [{
         radius: 0,
         downtown: true,
         rt_id: 6816,
+        timepoints: {
+            northbound: [8933, 9474, 401, 402, 403, 9658, 10145],
+            southbound: [1045, 9690, 386, 387, 10339, 9475, 8933]
+        },
+        directions: ["northbound", "southbound"],
         days_per_week: ['Monday', 'Sunday'],
         between: ['Rosa Parks TC', '8 Mile Meijer'],
         via: ['2nd', 'Hamilton', 'McNichols', 'John R'],
@@ -551,6 +626,11 @@ const routeDetails = [{
         radius: 99,
         downtown: true,
         rt_id: 6817,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [9970, 9021, 420, 421, 422, 10178],
+            westbound: [10178, 425, 426, 427, 341, 9970]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Rosa Parks TC', 'Jefferson & Maryland'],
         via: ['Jefferson'],
@@ -589,6 +669,11 @@ const routeDetails = [{
         radius: 0,
         downtown: true,
         rt_id: 6818,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [429, 432, 434, 435, 437, 438, 439, 441, 443, 8910],
+            westbound: [8910, 444, 446, 737, 448, 449, 451, 452, 454, 429]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Redford Plaza', 'Rosa Parks TC'],
         via: ['Lafayette', 'W. Grand Blvd.', 'Joy Rd.'],
@@ -626,6 +711,11 @@ const routeDetails = [{
         radius: 0,
         downtown: true,
         rt_id: 6819,
+        directions: ["southbound", "northbound"],
+        timepoints: {
+            southbound: [2781, 465, 467, 469, 470, 8912],
+            northbound: [8912, 474, 475, 477, 479, 2781]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Rosa Parks TC', 'Univ. of Detroit Mercy'],
         via: ['Trumbull', 'Linwood'],
@@ -662,6 +752,11 @@ const routeDetails = [{
         radius: 0,
         downtown: false,
         rt_id: 6820,
+        directions: ["southbound", "northbound"],
+        timepoints: {
+            southbound: [127, 481, 8987, 482, 483, 484, 486, 487, 488],
+            northbound: [488, 490, 491, 493, 494, 495, 230, 496, 127]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Fairgrounds TC', 'W. Jefferson & Brennan'],
         via: ['Livernois'],
@@ -698,6 +793,11 @@ const routeDetails = [{
         radius: 0,
         downtown: true,
         rt_id: 6821,
+        directions: ["westbound", "eastbound"],
+        timepoints: {
+            westbound: [41, 497, 498, 499, 6334, 502, 1616, 8918],
+            eastbound: [8918, 21, 505, 6336, 508, 509, 510, 41]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Mack & Moross', 'Rosa Parks TC'],
         via: ['Mack', 'Cass'],
@@ -736,6 +836,11 @@ const routeDetails = [{
         radius: 0,
         downtown: false,
         rt_id: 6822,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [9860, 7230, 514, 515, 517, 519, 524, 510, 41],
+            westbound: [41, 527, 529, 534, 536, 538, 539, 10157, 9860]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['6 Mile & Telegraph', 'Mack & Moross'],
         via: ['McNichols', 'Cadieux'],
@@ -773,6 +878,11 @@ const routeDetails = [{
         radius: 99,
         downtown: true,
         rt_id: 6823,
+        directions: ["northbound", "southbound"],
+        timepoints: {
+            northbound: [9963, 167, 547, 549, 550, 552, 62],
+            southbound: [554, 555, 550, 558, 178, 179, 9963]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['3rd & Abbott', '8 Mile & Gratiot'],
         via: ['Gratiot'],
@@ -809,6 +919,11 @@ const routeDetails = [{
         radius: 99,
         downtown: true,
         rt_id: 6824,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [368, 590, 6578, 591, 1489, 8945],
+            westbound: [8945, 1490, 599, 6577, 600, 368]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Rosa Parks TC', 'Fairlane Mall'],
         via: ['Michigan Ave'],
@@ -848,6 +963,11 @@ const routeDetails = [{
         radius: 0,
         downtown: false,
         rt_id: 6825,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [9776, 9572, 8874, 603, 607, 608, 54, 55, 1804, 59, 60, 61, 613, 1927],
+            westbound: [1927, 614, 65, 66, 67, 615, 71, 619, 620, 624, 626, 9549, 9776]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['I-96 & Middlebelt', '8 Mile & Hayes'],
         via: ['Plymouth', 'Elmhurst', 'Caniff'],
@@ -884,6 +1004,11 @@ const routeDetails = [{
         radius: 0,
         downtown: false,
         rt_id: 6826,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [627, 628, 629, 630, 3032, 196],
+            westbound: [201, 634, 635, 636, 637, 638]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Southfield & Fenkell', 'Manchester & Woodward'],
         via: ['Fenkell', 'Puritan'],
@@ -919,6 +1044,11 @@ const routeDetails = [{
         radius: 0,
         downtown: true,
         rt_id: 6827,
+        directions: ["northbound", "southbound"],
+        timepoints: {
+            northbound: [8944, 8777, 7414, 641, 644, 645, 646, 647, 648],
+            southbound: [648, 649, 650, 652, 7415, 655, 8944]
+        },
         days_per_week: ['Monday', 'Friday'],
         between: ['Rosa Parks TC', 'Van Dyke & E. Outer Dr'],
         via: [''],
@@ -942,6 +1072,11 @@ const routeDetails = [{
         radius: 0,
         downtown: false,
         rt_id: 6828,
+        directions: ["southbound", "northbound"],
+        timepoints: {
+            southbound: [656, 657, 659, 660, 6627, 661, 662, 663, 664],
+            northbound: [664, 9561, 662, 668, 6630, 669, 670, 672, 673]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['8 Mile & Schaefer', 'Brennan Loop'],
         via: ['Schaefer', 'W. Jefferson'],
@@ -977,6 +1112,10 @@ const routeDetails = [{
         radius: 0,
         downtown: false,
         rt_id: 6829,
+        directions: ["clockwise"],
+        timepoints: {
+            clockwise: [571, 584, 568, 7831, 4388, 8263, 3381]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Woodward & Manchester', 'Woodward & Mack'],
         via: ['Rosa Parks', 'Hamilton', 'Manchester', 'Oakland', 'St. Antoine'],
@@ -1014,6 +1153,11 @@ const routeDetails = [{
         radius: 0,
         downtown: false,
         rt_id: 6830,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [429, 674, 676, 677, 678, 679, 680, 196, 570, 572, 574, 9609, 576],
+            westbound: [7828, 578, 579, 580, 581, 201, 681, 682, 683, 684, 685, 6936, 429]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Redford Plaza', '8 Mile & Ryan'],
         via: ['Schoolcraft', 'Oakman Blvd', 'Manchester', 'Oakland'],
@@ -1050,6 +1194,11 @@ const routeDetails = [{
         radius: 99,
         downtown: false,
         rt_id: 6831,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [10157, 689, 6074, 384, 9635, 695, 520, 79, 42, 41],
+            westbound: [41, 8963, 76, 533, 699, 9638, 405, 6073, 705, 10157]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Meijer Old Redford', 'Mack & Moross'],
         via: ['Lahser', '7 Mile', 'Morang', 'Moross'],
@@ -1088,6 +1237,11 @@ const routeDetails = [{
         radius: 0,
         downtown: false,
         rt_id: 6832,
+        directions: ["southbound", "northbound"],
+        timepoints: {
+            southbound: [7282, 707, 708, 709, 710, 712, 843, 368],
+            northbound: [368, 843, 715, 717, 718, 719, 10341, 7282]
+        },
         days_per_week: ['Monday', 'Friday'],
         between: ['9 Mile & Rutland', 'Fairlane Mall'],
         via: ['Southfield Service Drive'],
@@ -1112,6 +1266,11 @@ const routeDetails = [{
         radius: 0,
         downtown: false,
         rt_id: 6833,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [159, 721, 722, 724, 439, 727, 729, 1616],
+            westbound: [1616, 734, 736, 737, 739, 741, 742, 159]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Warren & Pierson', 'John R & Mack'],
         via: ['Warren', 'Tireman', 'MLK'],
@@ -1144,6 +1303,11 @@ const routeDetails = [{
         days_per_week: ['Monday', 'Sunday'],
         between: ['Bel Air Center', 'Rosa Parks TC'],
         via: ['Lafayette', 'Van Dyke'],
+        directions: ["northbound", "southbound"],
+        timepoints: {
+            northbound: [8989, 745, 3757, 747, 749, 750, 752, 753, 93],
+            southbound: [93, 754, 755, 757, 758, 760, 3759, 762, 8989]
+        },
         description: "An east side route that offers 24/7 service and improved frequency as part of the ConnectTen network. Connects Detroit form Bel Air Center to Downtown Rosa Parks Transit Center. The main streets served are Van Dyke and E Lafayette.",
         pdf: ["http://www.detroitmi.gov/Portals/0/docs/deptoftransportation/pdfs/2018/5VanDykeLafMF.pdf", "http://www.detroitmi.gov/Portals/0/docs/deptoftransportation/pdfs/2018/5VanDykeLafSS.pdf"],
         services: {
@@ -1180,8 +1344,13 @@ const routeDetails = [{
         radius: 99,
         downtown: true,
         rt_id: 6835,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [6578, 10264, 765, 766, 767, 768, 8915],
+            westbound: [8915, 770, 8774, 772, 773, 10265, 6578]
+        },
         days_per_week: ['Monday', 'Sunday'],
-        between: ['Michigan & Schaefer', 'Rosa Parks TC'],
+        between: ['Rosa Parks TC', 'Michigan & Schaefer'],
         via: ['Vernor', 'Bagley', 'Lafayette'],
         description: "Offers 24/7 service and improved frequency as part of the ConnectTen network. Connects Detroit & Dearborn between Rosa Parks Transit Center and Schaefer & Michigan. The main streets served are Lafayette, Trumbull, Bagley, Vernor, Wyoming & Michigan.",
         pdf: ["http://www.detroitmi.gov/Portals/0/docs/deptoftransportation/pdfs/2018/1VernorMS.pdf"],
@@ -1217,6 +1386,11 @@ const routeDetails = [{
         radius: 99,
         downtown: true,
         rt_id: 6836,
+        directions: ["southbound", "northbound"],
+        timepoints: {
+            southbound: [127, 4604, 785, 787, 788, 1064, 9694],
+            northbound: [9694, 1061, 799, 8848, 802, 4603, 127]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Fairgrounds TC', 'Downtown'],
         via: ['Woodward Avenue'],
@@ -1255,6 +1429,11 @@ const routeDetails = [{
         radius: 0,
         downtown: false,
         rt_id: 6837,
+        directions: ["southbound", "northbound"],
+        timepoints: {
+            southbound: [127, 250, 805, 807, 808, 809, 810, 811, 322, 323, 815],
+            northbound: [815, 304, 15, 820, 821, 823, 824, 826, 241, 127]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['8 Mile & Wyoming', 'Delray'],
         via: ['Wyoming', 'Dearborn'],
@@ -1290,6 +1469,11 @@ const routeDetails = [{
         radius: 0,
         downtown: false,
         rt_id: 6838,
+        directions: ["southbound", "northbound"],
+        timepoints: {
+            southbound: [10329, 380, 838, 839, 7154, 842, 843, 368],
+            northbound: [368, 843, 844, 7156, 846, 847, 848, 849, 10328]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Northland Mall', 'Fairlane Mall'],
         via: ['8 Mile Rd', 'Evergreen'],
@@ -1327,6 +1511,11 @@ const routeDetails = [{
         radius: 0,
         downtown: true,
         rt_id: 6839,
+        directions: ["westbound", "eastbound"],
+        timepoints: {
+            westbound: [10178, 8167, 8148, 4841, 10258, 8263],
+            eastbound: [2507, 10259, 4838, 8147, 8166, 10267]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Jefferson & Maryland', 'W. Grand Blvd. & Trumbull'],
         via: ['Jefferson', 'Lafayette', 'Cass', 'W. Grand Blvd.'],
@@ -1351,6 +1540,11 @@ const routeDetails = [{
         radius: 0,
         downtown: false,
         rt_id: 6840,
+        directions: ["southbound", "northbound"],
+        timepoints: {
+            southbound: [2507, 3412, 1490, 772, 10260, 295],
+            northbound: [295, 10261, 766, 1489, 3411, 8263]
+        },
         days_per_week: ['Monday', 'Sunday'],
         between: ['Trumbull & W. Grand Blvd.', 'W. Outer Dr. & Fort'],
         via: ['Bassett', 'Vernor', 'Cass', 'W. Grand Blvd.'],
@@ -1375,6 +1569,11 @@ const routeDetails = [{
         radius: 0,
         downtown: true,
         rt_id: 6841,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [10253, 327, 330, 10231, 8100],
+            westbound: [341, 8441, 351, 847, 7258]
+        },
         days_per_week: ['Monday', 'Friday'],
         between: ['8 Mile & Evergreen', 'Downtown'],
         via: ['Grand River', 'I-96'],
@@ -1399,6 +1598,11 @@ const routeDetails = [{
         radius: 0,
         downtown: true,
         rt_id: 6843,
+        directions: ["northbound", "southbound"],
+        timepoints: {
+            northbound: [10204, 10205, 7328, 10207, 10208, 646],
+            southbound: [648, 4931, 10200, 10201, 10202, 10203]
+        },
         days_per_week: ['Monday', 'Friday'],
         between: ['Downtown', 'Van Dyke & Outer Dr.'],
         via: ['Ryan', 'I-75'],
@@ -1422,6 +1626,11 @@ const routeDetails = [{
         radius: 0,
         downtown: true,
         rt_id: 6844,
+        directions: ["eastbound", "westbound"],
+        timepoints: {
+            eastbound: [7158, 7214, 434, 437, 10231, 8100],
+            westbound: [341, 8441, 449, 452, 845, 7151]
+        },
         days_per_week: ['Monday', 'Friday'],
         between: ['Downtown', 'Weatherby'],
         via: ['Joy Road', 'I-96'],
